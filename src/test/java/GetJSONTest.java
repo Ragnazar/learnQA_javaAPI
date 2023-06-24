@@ -12,9 +12,9 @@ public class GetJSONTest {
                 .jsonPath();
         String answer = response.getList("messages").get(1).toString();
 
-        int indexStart = answer.indexOf("=");
+        int indexStart = answer.indexOf("=") + 1;
         int indexEnd = answer.indexOf(",");
-        String getMessage = answer.substring(indexStart + 1, indexEnd);
+        String getMessage = answer.substring(indexStart, indexEnd);
 
         System.out.println();
         System.out.println(getMessage);
