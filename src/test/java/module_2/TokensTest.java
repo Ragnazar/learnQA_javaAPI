@@ -1,11 +1,10 @@
+package module_2;
+
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
-import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TokensTest {
     @Test
