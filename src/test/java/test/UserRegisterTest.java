@@ -4,6 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import lib.Assertions;
 import lib.BaseTestCase;
+import lib.DataGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -16,10 +17,7 @@ public class UserRegisterTest extends BaseTestCase {
 
         Map<String, String> userData = new HashMap<>();
         userData.put("email", email);
-        userData.put("password", "123");
-        userData.put("username", "learnqa");
-        userData.put("firstName", "learnqa");
-        userData.put("lastName", "learnqa");
+        userData = DataGenerator.getRegistrationData(userData);
 
         Response response = RestAssured
                 .given()
@@ -27,6 +25,21 @@ public class UserRegisterTest extends BaseTestCase {
                 .post("https://playground.learnqa.ru/api/user/")
                 .andReturn();
         Assertions.assertResponseCodeEquals(response, 400);
-        Assertions.assertResponseTextEquals(response,"Users with email '" + email + "' already exists");
+        Assertions.assertResponseTextEquals(response, "Users with email '" + email + "' already exists");
     }
+
+    @Test
+    public void testCreateUserSuccessfulCreate() {
+
+        Map<String, String> userData = DataGenerator.getRegistrationData();
+
+        Response response = RestAssured
+                .given()
+                .body(userData)
+                .post("https://playground.learnqa.ru/api/user/")
+                .andReturn();
+        Assertions.assertResponseCodeEquals(response, 200);
+        Assertions.assertJsonHasField(response, "id");
+    }
+
 }
