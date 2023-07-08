@@ -1,8 +1,6 @@
 package test;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -32,6 +30,9 @@ public class UserGetTest extends BaseTestCase {
     }
 
     @Test
+    @Severity(value = SeverityLevel.BLOCKER)
+    @Owner(value = "Ивано Иван Иванович")
+    @Link(name = "Ссылка на swagger", url = "https://playground.learnqa.ru/api/map")
     @Description("This test successfully get an information about authorized user")
     @DisplayName("Test positive get information about user")
     public void testGetUserDetailsAuthAsSameUser() {
