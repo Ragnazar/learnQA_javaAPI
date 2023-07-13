@@ -1,8 +1,6 @@
 package test;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -41,6 +39,9 @@ public class UserAuthTest extends BaseTestCase {
     }
 
     @Test
+    @Severity(value = SeverityLevel.BLOCKER)
+    @Owner(value = "Ивано Иван Иванович")
+    @Link(name = "Ссылка на swagger", url = "https://playground.learnqa.ru/api/map")
     @Description("This test successfully authorize user by email and password")
     @DisplayName("Test positive auth user")
     public void testAuthUser() {
